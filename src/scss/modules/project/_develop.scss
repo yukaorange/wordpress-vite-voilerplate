@@ -1,0 +1,29 @@
+@use "../variables/variables";
+@use "../mixin/mixin";
+
+.container {
+  @include mixin.inner;
+}
+
+.develop {
+  padding: 200px 20px;
+}
+
+.spacer {
+  padding: 100px;
+}
+
+.bgc {
+  padding: 50px 0;
+  background-color: var(--bg-gray2);
+}
+
+.develop-text{
+  color: red;
+}
+
+.develop-image{
+  width: 50rem;
+  aspect-ratio: 4/3;
+  background-image: url("/images/top/top-performance.webp");
+}

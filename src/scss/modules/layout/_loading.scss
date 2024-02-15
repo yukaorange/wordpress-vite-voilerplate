@@ -1,0 +1,102 @@
+@use "../variables/variables";
+@use "../mixin/mixin";
+
+.loading {
+  position: fixed;
+  z-index: 100000;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--white);
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+  scrollbar-width: 0rem; //firefox
+  scrollbar-color: #444 #ccc; //firefox
+  &::-webkit-scrollbar {
+    width: 0;
+  }
+  // display: none;//activate when developing
+}
+.loading .dummy {
+  display: none;
+}
+.loading.loading--page #log,
+.loading.loading--page #progress {
+  visibility: hidden;
+  opacity: 0;
+}
+.loading__inner {
+  min-height: calc(100% + 1px);
+  display: grid;
+  align-items: center;
+  justify-items: center;
+}
+.loading #log {
+  position: absolute;
+  top: 0;
+  left: 0;
+  visibility: hidden;
+  grid-area: 1/1;
+}
+.loading #progress {
+  color: var(--black);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  grid-area: 1/1;
+}
+
+body.loaded .loading {
+  opacity: 0;
+  visibility: hidden;
+  transition-delay: 0.4s;
+  transition-duration: 0.4s;
+  pointer-events: none;
+  transition-timing-function: ease-in;
+}
+
+.loading-count {
+  --width: 1.0rem;
+  --height: 3.2rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.loading-count__digit {
+  width: var(--width);
+  height: var(--height);
+  overflow: hidden;
+  position: relative;
+}
+
+.loading-count__loader {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  transform: translateY(0);
+}
+
+.loading-count__digit--hundred .loading-count__loader {
+  transform: translateY(calc(-100% * var(--progress)));
+  transition-duration: 0.8s;
+  transition-timing-function: var(--easeOutSine);
+}
+
+.loading-count__digit--ten .loading-count__loader {
+  transform: translateY(calc(-100% * var(--progress)));
+  transition-duration: 0.4s;
+}
+
+.loading-count__digit--one .loading-count__loader {
+  transform: translateY(calc(-100% * var(--progress)));
+  transition-duration: 0.2s;
+}
+
+.loading-count__num {
+  display: grid;
+  width: var(--width);
+  height: var(--height);
+  place-items: center;
+  font-size: 1.6rem;
+}

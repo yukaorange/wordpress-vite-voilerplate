@@ -1,0 +1,8 @@
+@use "../variables/variables";
+@use "../mixin/mixin";
+
+.drawer-button {
+  width: 10px;
+  aspect-ratio: 1/1;
+  background-color: var(--black);
+}
